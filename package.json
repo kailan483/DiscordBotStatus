@@ -12,7 +12,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "get"
+    "test": "get",
+    "start": "gulp"
   },
   "repository": {
     "type": "git",
