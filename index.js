@@ -8,7 +8,7 @@ client.login(config.BOT_TOKEN);
 
 let anekdots = [];
 const options = {
-    url:"http://rzhunemogu.ru/RandJSON.aspx?CType=5",        
+    url:"http://rzhunemogu.ru/RandJSON.aspx?CType=18",        
     method: 'GET',
     encoding: 'binary'
 };
@@ -19,17 +19,21 @@ function getStatus(cb){
     let result = "";
     request(options,(error,response,body)=>{                          
         result = iconv.decode (new Buffer.from(body, 'binary'), 'win1251');        
-        result = result.replace(/\/n/gim,"").replace('{"content":"',"").replace(/..$/i,"");                
-        cb(result);       
+        result = result.replace(/\/n/gim,"").replace('{"content":"',"").replace(/..$/i,"");  
+        
+        if (result.includes("http")) getStatus(cb);
+        else cb(result);       
     });    
 
 }
 
+
 const PREFIX = "-status";
+
 client.on("message",(message)=>{    
     if (message.author.bot) return;
     if (!message.content.startsWith(PREFIX)) return;    
-    getStatus(function(result){
+    getStatus(function(result){                       
         message.channel.send(result);
     })
 });
