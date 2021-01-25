@@ -1,10 +1,10 @@
 const Discord = require("discord.js");
 const request = require("request");
-const config = require("./config.json");
+// const config = require("./config.json");
 const iconv = require("iconv-lite");
 
 const client = new Discord.Client();
-client.login(config.BOT_TOKEN);
+client.login(process.env.Discord_Token);
 
 // ВИТАЛИЙ И НИКОЛАЙ АНТОНОВ <3<3<3<3<3<3
 function getStatus(cb, options){    
@@ -36,7 +36,7 @@ client.on("message",(message)=>{
     else {
         switch(command) {
             case 'help':
-                message.channel.send(config.HELP);
+                message.channel.send(process.env.HELP);
                 break;
             case 'get':
                 if (args.length > 1) {
@@ -54,7 +54,7 @@ client.on("message",(message)=>{
                 }
                 if (argIsAccepted){
                     const options = {
-                        url:`${config.SITE}${args[0]}`,        
+                        url:`${process.env.SITE}${args[0]}`,        
                         method: 'GET',
                         encoding: 'binary'
                     }
