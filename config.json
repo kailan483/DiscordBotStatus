@@ -1,5 +1,0 @@
-{
-    "BOT_TOKEN":"ODAzMDE5ODcwOTQ5NDc0MzY0.YA3siA.bSJpZMfLwNG1cHrjRntz8TZmdZ8",
-    "HELP": "command list\nget-получить нечто, указанное в аргументе\nargs list\n1-Анекдот\n2-Рассказы\n3-Стихотворение\n5-Цитата\n6-Тост\n8-Статус\n11-Анекдот (+18)\n12-Рассказ(+18)\n13-Стихотворение(+18)\n14-Афоризм(+18)\n15-Цитаты(+18)\n16-Тост(+18)\n18-Статус(+18)",
-    "SITE":"http://rzhunemogu.ru/RandJSON.aspx?CType="
-}
