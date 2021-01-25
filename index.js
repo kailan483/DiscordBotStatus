@@ -6,7 +6,6 @@ const iconv = require("iconv-lite");
 const client = new Discord.Client();
 client.login(config.BOT_TOKEN);
 
-let anekdots = [];
 const options = {
     url:"http://rzhunemogu.ru/RandJSON.aspx?CType=18",        
     method: 'GET',
@@ -15,7 +14,7 @@ const options = {
 
 
 // ВИТАЛИЙ И НИКОЛАЙ АНТОНОВ <3<3<3<3<3<3
-function getStatus(cb){    
+function getStatus(cb, options){    
     let result = "";
     request(options,(error,response,body)=>{                          
         result = iconv.decode (new Buffer.from(body, 'binary'), 'win1251');        
@@ -28,12 +27,53 @@ function getStatus(cb){
 }
 
 
-const PREFIX = "-status";
-
+const PREFIX = "-bot";
+const acceptableArgs = ['1','2','3','4','5','6','8','11','12','13','14','15','16','18']
 client.on("message",(message)=>{    
-    if (message.author.bot) return;
-    if (!message.content.startsWith(PREFIX)) return;    
-    getStatus(function(result){                       
-        message.channel.send(result);
-    })
+    if (message.author.bot || !message.content.startsWith(PREFIX)) return;
+
+    const args = message.content.slice(PREFIX.length).trim().split(' ');
+
+    const command = args.shift().toLowerCase();
+
+    if (command == '') {
+        message.reply("Пропущена команда! Напишите -bot help для получения списка доступных команд!");
+        return;
+    }   
+    else {
+        switch(command) {
+            case 'help':
+                message.channel.send(config.HELP);
+                break;
+            case 'get':
+                if (args.length > 1) {
+                    message.reply("Слишком много аргументов!");
+                    return;
+                }
+                if (args.length == 0) {
+                    message.reply("Пропущен аргумент! Напишите -bot help для получения списка доступных аргументов!");
+                    return;
+                }
+                let argIsAccepted = false;
+                for (let i = 0; i < acceptableArgs.length; i++) {
+                    const element = acceptableArgs[i];
+                    if (args[0] == element) argIsAccepted = true;
+                }
+                if (argIsAccepted){
+                    const options = {
+                        url:`${config.SITE}${args[0]}`,        
+                        method: 'GET',
+                        encoding: 'binary'
+                    }
+                    getStatus(function(result){                       
+                        message.channel.send(result);
+                    },options)
+                }
+                else message.reply('Неправильный аргумент! Напишите -bot help для получения списка доступных аргументов');           
+                break;
+            default:
+                message.reply('Да нет такой команды!!!!')
+        }
+    }
+    
 });
