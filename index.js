@@ -1,9 +1,7 @@
 const Discord = require("discord.js");
 const request = require("request");
 const config = require("./config.json");
-const cheerio = require('cheerio');
 const iconv = require("iconv-lite");
-const { get } = require("request");
 
 const client = new Discord.Client();
 client.login(config.BOT_TOKEN);
