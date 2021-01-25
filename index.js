@@ -6,13 +6,6 @@ const iconv = require("iconv-lite");
 const client = new Discord.Client();
 client.login(config.BOT_TOKEN);
 
-const options = {
-    url:"http://rzhunemogu.ru/RandJSON.aspx?CType=18",        
-    method: 'GET',
-    encoding: 'binary'
-};
-
-
 // ВИТАЛИЙ И НИКОЛАЙ АНТОНОВ <3<3<3<3<3<3
 function getStatus(cb, options){    
     let result = "";
