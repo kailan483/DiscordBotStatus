@@ -53,6 +53,7 @@ client.on("message",(message)=>{
                     if (args[0] == element) argIsAccepted = true;
                 }
                 if (argIsAccepted){
+                    console.log(process.env.SITE);
                     const options = {
                         url:`${process.env.SITE}${args[0]}`,        
                         method: 'GET',
