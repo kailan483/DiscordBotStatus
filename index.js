@@ -25,6 +25,7 @@ function getCatFact(options){
     let result = "";
     request(options,(error,response,body)=>{
         result = body;
+        console.log(body);
     })
     return result;
 }
@@ -58,8 +59,7 @@ client.on("message",(message)=>{
                 }
                 let fact = getCatFact(options)
                 
-                message.reply(fact);
-                
+                message.reply(fact);                
                 break;
             case 'get':
                 if (args.length > 1) {
