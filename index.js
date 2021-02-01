@@ -70,7 +70,7 @@ client.on("message",(message)=>{
                     message.channel.send(result);
                 },codeList);
                 break;
-            case 'HTTPCat':
+            case 'httpcat':
                 if (args.length > 1) {
                     message.reply("Слишком много аргументов!");
                     return;
