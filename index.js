@@ -45,7 +45,7 @@ client.on("message",(message)=>{
             case 'cat':
                 HTTPCat((result)=>{
                     message.channel.send(result);
-                })
+                },101);
                 break;
             case 'get':
                 if (args.length > 1) {
