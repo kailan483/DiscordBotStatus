@@ -21,6 +21,7 @@ function getStatus(cb, options){
 
 function HTTPCat(code){
     let ref = "https://http.cat/" + code.toString();
+    message.channel.send(ref);
     message.channel.send("",{files:[ref]});
 }
 
