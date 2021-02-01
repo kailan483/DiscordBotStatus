@@ -24,10 +24,8 @@ function getStatus(cb, options){
 function getCatFact(options){
     let result = "";
     request(options,(error,response,body)=>{
-        result = body;
-        console.log(body);
-    })
-    return result;
+        return body;        
+    })    
 }
 
 const PREFIX = "-bot";
