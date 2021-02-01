@@ -20,7 +20,7 @@ function getStatus(cb, options){
 }
 
 function HTTPCat(cb,code){
-    let result = "https://http.cat/" + code.toString();
+    let result = "https://http.cat/" + code;
     cb(result);
 }
 
@@ -43,9 +43,17 @@ client.on("message",(message)=>{
                 message.channel.send(process.env.HELP);
                 break;
             case 'cat':
+                if (args.length > 1) {
+                    message.reply("Слишком много аргументов!");
+                    return;
+                }
+                if (args.length == 0) {
+                    message.reply("Пропущен аргумент! Напишите -bot help для получения списка доступных аргументов!");
+                    return;
+                }
                 HTTPCat((result)=>{
                     message.channel.send(result);
-                },101);
+                },args[0]);
                 break;
             case 'get':
                 if (args.length > 1) {
