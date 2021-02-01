@@ -13,12 +13,21 @@ function getStatus(cb, options){
         result = iconv.decode (new Buffer.from(body, 'binary'), 'win1251');        
         result = result.replace(/\/n/gim,"").replace('{"content":"',"").replace(/..$/i,"");  
         
-        if (result.includes("http")) getStatus(cb);
+        if (result.includes("http")) getStatus(cb,options);
         else cb(result);       
     });    
 
 }
 
+
+
+function getCatFact(options){
+    let result = "";
+    request(options,(error,response,body)=>{
+        result = body;
+    })
+    return result;
+}
 
 const PREFIX = "-bot";
 const acceptableArgs = ['1','2','3','4','5','6','8','11','12','13','14','15','16','18']
@@ -37,6 +46,20 @@ client.on("message",(message)=>{
         switch(command) {
             case 'help':
                 message.channel.send(process.env.HELP);
+                break;
+            case 'cat-fact':
+                if (args.length != 0){
+                    message.reply("Для этой команды аргументы не нужны!");
+                    return;
+                }                
+                const options = {
+                    url: 'https://cat-fact.herokuapp.com/facts',
+                    method: 'GET'
+                }
+                let fact = getCatFact(options)
+                
+                message.reply(fact);
+                
                 break;
             case 'get':
                 if (args.length > 1) {
