@@ -29,7 +29,7 @@ function HTTPCat(cb,code){
         let result = "https://http.cat/" + code;
         cb(result);
     }
-    else cb("Отсутствует HTTP-код(кот)");
+    else cb("Отсутствует HTTP-кот");
 }
 
 const PREFIX = "-bot";
