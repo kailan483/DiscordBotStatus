@@ -19,6 +19,10 @@ function getStatus(cb, options){
 
 }
 
+function HTTPCat(code){
+    let ref = "https://http.cat/" + code.toString();
+    message.channel.send("",{files:[ref]});
+}
 
 const PREFIX = "-bot";
 const acceptableArgs = ['1','2','3','4','5','6','8','11','12','13','14','15','16','18']
@@ -37,6 +41,9 @@ client.on("message",(message)=>{
         switch(command) {
             case 'help':
                 message.channel.send(process.env.HELP);
+                break;
+            case 'HTTPCat':
+                HTTPCat(101);
                 break;
             case 'get':
                 if (args.length > 1) {
