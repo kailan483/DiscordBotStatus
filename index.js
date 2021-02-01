@@ -18,13 +18,6 @@ function getStatus(cb, options){
     });    
 
 }
-
-function HTTPCat(code){
-    let ref = "https://http.cat/" + code.toString();
-    message.channel.send(ref);
-    message.channel.send("",{files:[ref]});
-}
-
 const PREFIX = "-bot";
 const acceptableArgs = ['1','2','3','4','5','6','8','11','12','13','14','15','16','18']
 client.on("message",(message)=>{    
@@ -44,7 +37,8 @@ client.on("message",(message)=>{
                 message.channel.send(process.env.HELP);
                 break;
             case 'cat':
-                HTTPCat(101);
+                let ref = "https://http.cat/101";
+                message.channel.send(ref);
                 break;
             case 'get':
                 if (args.length > 1) {
