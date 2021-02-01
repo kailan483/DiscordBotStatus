@@ -20,12 +20,35 @@ function getStatus(cb, options){
 }
 
 function HTTPCat(cb,code){
-    let result = "https://http.cat/" + code;
-    cb(result);
+    let argIsAccepted = false;
+    for (let i = 0; i < acceptableArgs.length; i++) {
+        const element = acceptableArgs[i];
+        if (code == element) argIsAccepted = true;
+    }
+    if (argIsAccepted){
+        let result = "https://http.cat/" + code;
+        cb(result);
+    }
+    else cb("Отсутствует HTTP-код(кот)");
 }
 
 const PREFIX = "-bot";
 const acceptableArgs = ['1','2','3','4','5','6','8','11','12','13','14','15','16','18']
+const codeList = ['100','101','102',
+'200','201','202','204','206','207',
+'300','301','302','303','304','305','307',
+'400','401','402','403','404','405','406','408','409','410','411','412','413',
+'414','415','416','417','418','420','421','422','423','424','425','426','429','431','444','450','451','499',
+'500','501','502','503','504','506','507','508','509','509','510','511','599']
+
+function printArray(cb,array){
+    let message = "";
+    for (let index = 0; index < array.length; index++) {
+        const element = array[index];
+        message += element.toString() + "\r\n";
+    }
+    cb(message);
+}
 client.on("message",(message)=>{    
     if (message.author.bot || !message.content.startsWith(PREFIX)) return;
 
@@ -42,7 +65,12 @@ client.on("message",(message)=>{
             case 'help':
                 message.channel.send(process.env.HELP);
                 break;
-            case 'cat':
+            case 'code-list':
+                printArray((result)=>{
+                    message.channel.send(result);
+                },codeList);
+                break;
+            case 'HTTPCat':
                 if (args.length > 1) {
                     message.reply("Слишком много аргументов!");
                     return;
