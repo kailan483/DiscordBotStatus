@@ -42,7 +42,7 @@ client.on("message",(message)=>{
             case 'help':
                 message.channel.send(process.env.HELP);
                 break;
-            case 'HTTPCat':
+            case 'cat':
                 HTTPCat(101);
                 break;
             case 'get':
