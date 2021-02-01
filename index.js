@@ -21,7 +21,7 @@ function getStatus(cb, options){
 
 
 
-const PREFIX = "-bot";
+const PREFIX = "-fun";
 const acceptableArgs = ['1','2','3','4','5','6','8','11','12','13','14','15','16','18']
 const codeList = ['100','101','102',
 '200','201','202','204','206','207',
