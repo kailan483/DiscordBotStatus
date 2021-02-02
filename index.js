@@ -65,11 +65,11 @@ client.on("message",(message)=>{
     else {
         switch(command) {
             case 'help':
-                message.channel.send(process.env.HELP);
+                message.author.send(process.env.HELP);
                 break;
             case 'code-list':
                 printArray((result)=>{
-                    message.channel.send(result);
+                    message.author.send(result);
                 },codeList);
                 break;
             case 'httpcat':
