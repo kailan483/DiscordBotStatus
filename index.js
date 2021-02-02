@@ -66,32 +66,39 @@ client.on("message",(message)=>{
         switch(command) {
             case 'help':
                 message.author.send(process.env.HELP);
+                message.delete();
                 break;
             case 'code-list':
                 printArray((result)=>{
                     message.author.send(result);
                 },codeList);
+                message.delete();
                 break;
             case 'httpcat':
                 if (args.length > 1) {
                     message.reply("Слишком много аргументов!");
+                    message.delete();
                     return;
                 }
                 if (args.length == 0) {
                     message.reply("Пропущен аргумент! Напишите -bot help для получения списка доступных аргументов!");
+                    message.delete();
                     return;
                 }
                 HTTPCat((result)=>{
                     message.channel.send(result);
                 },args[0]);
+                message.delete();
                 break;
             case 'get':
                 if (args.length > 1) {
                     message.reply("Слишком много аргументов!");
+                    message.delete();
                     return;
                 }
                 if (args.length == 0) {
                     message.reply("Пропущен аргумент! Напишите -bot help для получения списка доступных аргументов!");
+                    message.delete();
                     return;
                 }
                 let argIsAccepted = false;
@@ -111,10 +118,13 @@ client.on("message",(message)=>{
                     },options)
                 }
                 else message.reply('Неправильный аргумент! Напишите -bot help для получения списка доступных аргументов');           
+                message.delete();
                 break;
             default:
+                message.delete();
                 message.reply('Да нет такой команды!!!!')
         }
     }
+    
     
 });
