@@ -65,6 +65,7 @@ client.on("message",(message)=>{
     else {
         switch(command) {
             case 'help':
+                if (args.length == 0)
                 message.author.send(process.env.HELP);
                 break;
             case 'code-list':
