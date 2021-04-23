@@ -69,6 +69,7 @@ client.on("message",(message)=>{
                 message.author.send(process.env.HELP);
                 break;
             case 'code-list':
+                if (args.length == 0)
                 printArray((result)=>{
                     message.author.send(result);
                 },codeList);
